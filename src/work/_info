@@ -1,0 +1,320 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.3_1 2021.08, Aug 15 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/runner
+T_opt
+!s110 1651655358
+Vc8dOEke7YdUWfU`d_38h@3
+04 15 4 work singleProcessor fast 0
+=1-000ae431a4f1-627242be-99a2f-d
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc=npr
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.3_1;73
+vadder
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1651655357
+!i10b 1
+!s100 :zV]fR43H?B;SG]b>dClN1
+IY3gk2b=CdbaceE:9YPA`31
+S1
+R0
+Z4 w1651655351
+8adder.v
+Fadder.v
+!i122 0
+L0 1 5
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2021.3_1;73
+r1
+!s85 0
+31
+Z7 !s108 1651655357.000000
+Z8 !s107 singleProcessor.v|registerFile.v|dataMemory.v|controlUnit.v|ALUcontrol.v|ALU_64_bit.v|adder.v|dataGenerator.v|instructionParser.v|instructionMemory.v|mux2to1.v|programCounter.v|testbench.sv|design.sv|
+Z9 !s90 -writetoplevels|questa.tops|-timescale|1ns/1ns|design.sv|testbench.sv|
+!i113 0
+Z10 o-timescale 1ns/1ns
+R1
+vALU_64_bit
+R2
+R3
+!i10b 1
+!s100 jg;k@f9Vc<`MmLaA_>3Jg0
+IgD<[5>lEDHKTRZfXnGZRj1
+S1
+R0
+R4
+8ALU_64_bit.v
+FALU_64_bit.v
+!i122 0
+Z11 L0 1 24
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@a@l@u_64_bit
+vALUcontrol
+R2
+R3
+!i10b 1
+!s100 j`?d[9ek2HQ@MkA2Lfehk3
+I;NLYM9ee9G5jmda@BG7E<1
+S1
+R0
+R4
+8ALUcontrol.v
+FALUcontrol.v
+!i122 0
+R11
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@a@l@ucontrol
+vcontrolUnit
+R2
+R3
+!i10b 1
+!s100 K5Cz:gcnhnNKP<>Qn58>V0
+Ie1^b40[P1<05M;haGOKbS0
+S1
+R0
+R4
+8controlUnit.v
+FcontrolUnit.v
+!i122 0
+L0 1 48
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+ncontrol@unit
+vdataGenerator
+R2
+R3
+!i10b 1
+!s100 om7AS[Nf:L[AAzL0hWn1O2
+I5Q][L0NX5>FniTPdSC6fk2
+S1
+R0
+R4
+8dataGenerator.v
+FdataGenerator.v
+!i122 0
+L0 1 18
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+ndata@generator
+vdataMemory
+R2
+R3
+!i10b 1
+!s100 HJGbF2a<QkP7cU]6dijkD2
+I@?gTUcT1bjH=2oD;GS5?J0
+S1
+R0
+R4
+8dataMemory.v
+FdataMemory.v
+!i122 0
+L0 1 103
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+ndata@memory
+vinstructionMemory
+R2
+R3
+!i10b 1
+!s100 ^U[6E1nbAakh2[ATKWKE53
+IDEn2BHm=ZNNE9e:noSSd^0
+S1
+R0
+R4
+8instructionMemory.v
+FinstructionMemory.v
+!i122 0
+L0 1 36
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+ninstruction@memory
+vinstructionParser
+R2
+R3
+!i10b 1
+!s100 ;G^ij;d[cD<UfOAi[Qb@S0
+IoALbIDeWKWiWnmM@iRB=72
+S1
+R0
+R4
+8instructionParser.v
+FinstructionParser.v
+!i122 0
+L0 2 18
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+ninstruction@parser
+vmux2to1
+R2
+R3
+!i10b 1
+!s100 iRd=0nSORWcz9N54L3gQ<2
+I>jS1iQfTY0KPDGOO^]iNk1
+S1
+R0
+R4
+8mux2to1.v
+Fmux2to1.v
+!i122 0
+L0 1 7
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vprogramCounter
+R2
+R3
+!i10b 1
+!s100 b:;hjIF0<<0><F?RmWa`d3
+IjiLU38VW8WO@_AAUmdHg=0
+S1
+R0
+R4
+8programCounter.v
+FprogramCounter.v
+!i122 0
+L0 1 13
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+nprogram@counter
+vregisterFile
+R2
+R3
+!i10b 1
+!s100 dEI@ZbXXL9fS3B=BzGGdJ3
+I^@:ZL_3Tg4HUZ6V7nG7g90
+S1
+R0
+R4
+8registerFile.v
+FregisterFile.v
+!i122 0
+L0 1 67
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+nregister@file
+vsingleProcessor
+R2
+R3
+!i10b 1
+!s100 XQaMkGQGS98N7Nezh64UF3
+Io9o[o=_[Ao1Y@@E:;i62l1
+S1
+R0
+R4
+8singleProcessor.v
+FsingleProcessor.v
+!i122 0
+L0 1 74
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+nsingle@processor
