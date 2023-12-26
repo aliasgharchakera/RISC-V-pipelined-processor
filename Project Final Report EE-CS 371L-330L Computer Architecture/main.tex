@@ -1,0 +1,304 @@
+\documentclass{article}
+
+%%%%%%% PACKAGES %%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{blindtext}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{notoccite} %citation number ordering
+\usepackage{lscape} %landscape table
+\usepackage{caption} %add a newline in the table caption
+\usepackage{subfig}
+
+\usepackage[
+backend=biber,  %references format (IEEE)
+style=ieee,
+sorting=none
+]{biblatex}
+\addbibresource{refs.bib} %rename this to your own bibliography
+\onehalfspace   % 1.5 line spacing
+
+\title{\huge{\textbf{Final Project Report}}\\
+\LARGE{Pipelined Processor}}
+\author{Ali Asghar Yousuf - ay06993\\
+        Abdul Majid - at06616\\
+        Muneeb Shafique - ms06373}
+\date{\today}
+
+\begin{document}
+\pagenumbering{roman} % Start roman numbering
+\clearpage\maketitle
+\thispagestyle{empty}
+\begin{center}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=10cm]{pics/hulogo.png}
+        %\caption{Your caption here}
+        \label{fig:logo}
+    \end{figure}
+    \large{EE/CS 371L/330L Computer Architecture \\
+    Supervisors: Muhammad Umer Tariq - Aiman Najeeb}
+\end{center}
+\newpage
+\setcounter{page}{1}
+\tableofcontents
+
+
+\newpage
+\pagenumbering{arabic} % Start roman numbering
+
+%%% CONTENT HERE %%%%
+\section{Task 1}
+\subsection{Assembly code}
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=11cm]{riscv-1.png}
+        \caption{Risc-V assembly code}
+        \label{fig: User flow Diagram}
+    \end{figure}
+\end{center}
+
+
+
+\subsection{Equivalent Python code}
+The following is the Sorting Algorithm in Python:
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=12cm]{python code.png}
+        \caption{Sorting Algorithm in Python}
+        \label{Sorting Algorithm in Python}
+    \end{figure}
+\end{center}
+
+\subsection{Testing Assembly on Venus Simulator}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=12cm, height=8cm]{venus_testing.png}
+        \caption{Snapshot of Memory}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\subsection{Explanation: Testing Sorting Algorithm on Single Cycle Processor}
+The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two sub-arrays in a given array, the sub-array which is already sorted, remaining sub-array which is unsorted. In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted sub-array is picked and moved to the sorted sub-array.
+
+To implement this algorithm in assembly the following approach has been used. Firstly, we initialize an array in the memory with arbitrary values which has been done using the initial loop. Once the array is populated with values two loops have been made use of to sort the already present values in the array. The minimum (min-index) to is initialized to location 0 after the array is traversed to locate the min element. While traversing if and element is found to be smaller that min-index both values have been swapped. At this stage min-index is incremented to point to the next element. This process has been repeated until the entire array is sorted. 
+
+To test the working of this assembly code on our processor alterations were made to the module Instruction Memory. Hex codes for each instruction were found and loaded into the subsequent locations of the array(Figure 5). To verify our results additional registers in our case 6 (number of values stored in the array) were defined in the module Data Memory and their values were compared which demonstrated sorting by showcasing each switch of element in the array. (Figure 6) The following is demonstrated in the following snapshot of the EP-wave generated after running the code. \\\\ EDA playground Link for Task 1:\\https://www.edaplayground.com/x/k9ej
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=18cm, height=3cm]{check.png}
+        \caption{Snapshot of EP-Wave: Result Testing}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\newpage
+
+\subsection{Changes in Architecture}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=14cm, ]{instruction_memory.png}
+        \caption{Changes in Instruction Memory Module}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=10cm]{data_memory.png}
+        \caption{Changes in Data Memory Module}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+Further Changes in Control Unit: \\ As shown in Figure 1 the assembly code includes a blt instruction which is used to find the minimum value from the entire array. The following modifications were made the to the Control Unit to cater for this additional type of assembly. Along with the 7 outputs leaving the Control Unit an eighth one was added by the name of branch-blt. This signal is activated, and inputted into an AND gate along with the output from the ALU whose most significant is 1 is the first value is lesser than the second. After passing through the AND gate it further enters the OR gate with the regular signal before it goes into the MUX.
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=14cm]{pics/control unit.png}
+        \caption{Changes in Control Unit for  blt }
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+
+\newpage
+
+\section{Task 2: Modifying Processor: Pipelined Processor }
+\subsection{{Pipeline Registers} }
+The following figures represent pipeline registers which are used to store values between stages. They take their new values on the positive edge of the clk and if "reset" equals 1 then their values are initialized to 0. Connections have been made between these 4 different register to include control information and circuitry.
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=14cm]{pics/mem_wb.png}
+        \caption{Changes in MEM/Write Back Register }
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=12cm]{pics/IF_ID.png}
+        \caption{Changes in instruction Fetch/Instruction Decode Register}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=19cm]{pics/ID_EX.png}
+        \caption{Changes in Instruction Decode/Execute Register}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=19cm]{pics/Ex_MEM.jpeg}
+        \caption{Changes in Execute/Mem Register}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\subsection{{Forwarding Unit}}
+The Forward Unit is responsible for comparing the rd values of the EX-MEM and MEM-WB instructions with rs1 and rs2 values of ID-EX. If they equal each other, the value of the regwrite is observed for EX-MEM and MEM-WB. In the case where it is 1 i.e. the next instructions is writng to the register Forward A and Forward B signals are sent accordingly to resolve the haazard.
+
+Figure 13 shows the different requirements that must be fulfilled to generate the required forwarding signals. Once the necessary Forwarding signals have been generated they are sent to the MUX (Figure 14) which is responsible for deciding the signals that are to be used as inputs in the ALU unit. 
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=19cm]{pics/Forwarding_unit.png}
+        \caption{Fowarding Unit}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\newpage
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=12cm]{pics/table.jpeg}
+        \caption{Mux Control Signals}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=17cm]{pics/MUX.jpeg}
+        \caption{Mux}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=15cm]{testcases.jpeg}
+        \caption{Test Cases used to test forwarding}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=15cm]{last_wave.jpg}
+        \caption{Test Cases used to test forwarding}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+
+TASK 2:\\
+EDA playground link: https://edaplayground.com/x/jBrB
+
+
+\newpage
+\section{Task 3: Detecting Hazards}
+\subsection{{Hazard Detection Module}}
+
+The hazard detection(Figure 15) has the ability to introduce the effect equivalent to that of a bubble. This is done when the next instruction is a load hence a valid hazard. To achieve this result the mux controller is set to zero thereby setting the control signals to zero making the instruction an effective zero. Along with this unit, a seperate mux (Figure16) is used which takes input as the mux controller pin and changes them to zero if the need be. Furthermore, pc-write and if-write signals which prevent writing to pc and pipeline registers when the hazard detection unit is activated to introduce the bubble effect. 
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=19cm]{Hazard_Detection.jpeg}
+        \caption{Hazard Detection}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=15cm]{MUX2.jpeg}
+        \caption{Hazard Detection Mux}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+This section of the code present in the module IF-ID specifically prevents it from writing back.
+
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=10cm]{writing.jpeg}
+        \caption{Hazard Detection Mux}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+
+\subsection{{Testing Performance of Modules}}
+
+The EP\textunderscore Wave shows that the final result is 17 in hexadecimal i.e 23 which is the expected result hence proving that the alterations made to modules in section 3.1 are correct. Despite the apparent hazard in the assembly our pipelined processor resolves the issue. 
+
+
+\begin{figure}
+    \centering
+    \subfloat[Assembly Code]{{\includegraphics[width=5cm]{testing.jpeg} }}
+    \qquad
+    \subfloat[Data-Memory]{{\includegraphics[width=7cm]{data_memory.jpeg} }}
+    \caption{Testing}
+    \label{fig:example}
+\end{figure}
+
+\newpage
+
+\begin{center}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=18.5cm]{results.jpeg}
+        \caption{EP-Wave results}
+        \label{Snapshot of Memory}
+    \end{figure}
+\end{center}
+
+TASK 3:\\
+EDA playground link: https://edaplayground.com/x/Xg\textunderscore i
+
+
+\end{document}

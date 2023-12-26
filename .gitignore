@@ -1,0 +1,6 @@
+*.zip
+.bash_history
+.bash_profile
+.bashrc
+.cache
+.config
