@@ -99,5 +99,7 @@ module dataMemory(
           readData[55:48] = instMem[memAddr + 6];
           readData[63:56] = instMem[memAddr + 7];
         end
+      else
+        readData = 0;
     end
 endmodule
